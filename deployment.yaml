@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: huoneisto
+spec:
+  template:
+    metadata:
+      labels:
+        run: huoniesto
+    spec:
+      containers:
+      - name: huoniesto
+        image:  gcr.io/jntlserv0/huoneisto:0.5
+        env:
+        - name: THEMES
+          value: realestate
+        - name: LOCALE
+          value: fi_FI
+        - name: DBADMIN
+          value: admin
+        - name: ADDRS
+          value: mymongo-controller
+        - name: MAINROUTE
+          value: blogi
+        - name: ANALYTICS
+          value: UA-85362694-1                  
+        - name: USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: username
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: password
+        ports:
+        - containerPort: 8080
+

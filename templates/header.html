@@ -1,0 +1,96 @@
+{{ define "header" }}
+
+<!DOCTYPE html >
+  <head>
+    <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<title>{{.Title}}</title>
+<style>
+
+body {
+        
+   background: url('/assets/img/backgroundimg.jpg') no-repeat center center fixed;
+   background-size: cover;
+   height: 100%;
+        
+  	font-family: 'Finger Paint', cursive  !important;
+/*  	color:#ffd9d9;
+  	color:#000000; */
+  	text-shadow: 1px 1px 1px #aaa;
+  	margin: 10px;
+ /*	font-size: 170%;*/
+ 	/*background-color: white;*/
+}
+
+h1   {color: blue;}
+p    {color: red;}
+
+	
+#Mcontents {
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   z-index: -1;
+   overflow: hidden;
+   opacity: 0.1;
+   color:black;
+   font-size: 100%;
+}	
+.cvbigtitle {
+  font-size: 310%;
+  text-shadow: 2px 2px 2px #aaa;
+  color: red;
+  
+}
+.name {
+  font-size: 210%;
+  text-shadow: 2px 2px 2px #aaa;
+	
+}
+.wrapper {
+  padding: 10px 20px;
+  overflow: hidden;
+  background: hsl(200, 20%, 20%);
+}		
+</style>
+
+  </head>
+  <body>
+   <div class="container">
+   <div class="wrapper">
+  <div class="well">
+  
+        	
+        <div class="row">
+			
+			<div class="col-md-4"><image src='/assets/img/freelancer_transp.png' class="img-responsive"/></div>
+			<div class="col-md-4"><h2>Ing. Mazurov A.</h2></div>
+			<div class="col-md-4"><image src='/assets/img/free_for_job.png' class="img-responsive"/></div>
+	
+		</div>
+        <div class="row">
+			
+			<div class="col-md-4"><image src='/assets/img/mazurovopt.jpg' class="img-responsive img-rounded"/></div>
+			<div class="col-md-4"><p class='cvbigtitle'>Professional Programming</p>C/JAVA/Golang/JavaScript etc...<p class='name'>support@remotejob.eu</p></div>
+			<div class="col-md-4"><a href='http://mazurov.eu' ><image src='/assets/img/orange-arrow-right.png' class="img-responsive">More details</a></div>
+	
+		</div>		
+		
+  
+  </div>
+  </div>
+  </div>
+  
+ 
+  
+ {{ end }}
+
+

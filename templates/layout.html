@@ -1,0 +1,31 @@
+{{ template "header_common" .}}
+
+<script>
+
+function collapseHandler() {
+	
+	
+	$('#collapse').collapse('toggle');
+	
+}
+</script>
+
+<div  id='Mcontents'>{{.Mcontents}} </div>
+
+<div class="container">
+
+<button class="btn btn-primary" type="button" onclick="collapseHandler()">Show </button>
+
+<div class="collapse" id="collapse">
+<div class="well">
+<h1 id="Title">{{.Title}} </h1>
+
+<div id="Contents">{{.Contents}}</div>
+</div>
+</div>
+
+
+</div>
+</body>
+
+</html>

@@ -1,8 +1,9 @@
 package initfunc
 
 import (
-	"log"
 	"os"
+
+	"github.com/remotejob/huoneisto_go/domains"
 )
 
 // var themes string
@@ -16,17 +17,21 @@ import (
 // var mainroute string
 
 //GetPar get start parameters
-func GetPar() (string, string, []string, string, string, string, string, string) {
+func GetPar() domains.InitStruct {
 
-	username := os.Getenv("USERNAME")
-	password := os.Getenv("PASSWORD")
-	themes := os.Getenv("THEMES")
-	locale := os.Getenv("LOCALE")
-	dbadmin := os.Getenv("DBADMIN")
-	mechanism := os.Getenv("MECHANISM")
-	addrs := []string{os.Getenv("ADDRS")}
-	mainroute := os.Getenv("MAINROUTE")
-	log.Println("mongodbpass", password)
+	var initstruct domains.InitStruct
 
-	return themes, locale, addrs, dbadmin, username, password, mechanism, mainroute
+	initstruct.Username = os.Getenv("USERNAME")
+
+	initstruct.Password = os.Getenv("PASSWORD")
+	initstruct.Themes = os.Getenv("THEMES")
+	initstruct.Locale = os.Getenv("LOCALE")
+	initstruct.Dbadmin = os.Getenv("DBADMIN")
+	initstruct.Mechanism = os.Getenv("MECHANISM")
+	initstruct.Addrs = []string{os.Getenv("ADDRS")}
+	initstruct.Mainroute = os.Getenv("MAINROUTE")
+	initstruct.Mobile = false
+	initstruct.Analytics = os.Getenv("ANALYTICS")
+
+	return initstruct
 }

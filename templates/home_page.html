@@ -1,0 +1,49 @@
+
+{{ template "header_common" .}}
+
+<script>
+
+
+function collapseHandler() {
+		
+	$('#collapse').collapse('toggle');
+	
+}
+</script>
+
+<div class="container">
+
+<button class="btn btn-primary" type="button" onclick="collapseHandler()">Show Index</button>
+
+<div class="collapse" id="collapse">
+<div class="well">
+
+<div class="row">
+
+
+<div class="col-md-12">
+<h2><span class="label label-default">Index:</span></h2>
+<div class="list-group">
+{{range $article := .}}
+
+
+<a href='/realestate/fi_FI/blogi/{{$article.Stitle}}.html' class="list-group-item">{{$article.Title}}</a>
+
+{{end}}
+
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+</div>
+</body>
+
+</html>

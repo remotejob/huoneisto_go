@@ -5,12 +5,15 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/remotejob/huoneisto_go/domains"
 )
 
 //Generate create robots.txt
 func Generate(w http.ResponseWriter, r *http.Request) {
 
-	log.Println("themes", r.Context().Value("themes"))
+	initstruct := r.Context().Value("init").(domains.InitStruct)
+	log.Println("themes", initstruct.Addrs[0])
 
 	var buffer bytes.Buffer
 

@@ -56,27 +56,24 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 
 	"github.com/remotejob/goDevice"
 
+	"github.com/remotejob/huoneisto_go/blog"
+	"github.com/remotejob/huoneisto_go/domains"
 	"github.com/remotejob/huoneisto_go/initfunc"
 	"github.com/remotejob/huoneisto_go/robots"
+	"github.com/remotejob/huoneisto_go/sitemap"
 )
 
-var themes string
-var locale string
-
-var addrs []string
-var dbadmin string
-var username string
-var password string
-var mechanism string
-var mainroute string
+var initStruct domains.InitStruct
 
 func init() {
-	themes, locale, addrs, dbadmin, username, password, mechanism, mainroute = initfunc.GetPar()
+	initStruct = initfunc.GetPar()
+	log.Println(initStruct.Mainroute)
 
 }
 
@@ -86,29 +83,34 @@ func Middleware(h http.Handler) http.Handler {
 
 		deviceType := goDevice.GetType(r)
 		if deviceType == "Mobile" {
-			// fmt.Fprintf(w, "<h1>Mobile</h1>")
-			w.Header().Set("Mobile", "true")
-		} else {
-			// detectMobile.Detect(w, r)
-			w.Header().Set("Mobile", "false")
+			initStruct.Mobile = true
 		}
-		ctx := context.WithValue(r.Context(), "themes", themes)
+		sitefull := r.Host
+		site := strings.Split(sitefull, ":")[0]
+
+		if site == "localhost" {
+
+			site = "huoneisto.mobi"
+
+		}
+		initStruct.Site = site
+
+		ctx := context.WithValue(r.Context(), "init", initStruct)
 		h.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
 
 func main() {
 
-	// fs := http.FileServer(http.Dir("assets"))
+	fs := http.FileServer(http.Dir("assets"))
 
 	r := mux.NewRouter()
 
 	r.HandleFunc("/robots.txt", robots.Generate)
-	// r.HandleFunc("/sitemap.xml", sitemap.CheckServeSitemap)
-	// r.HandleFunc("/job/{locale}/{themes}/{mtitle}.html", blog.CreateArticelePage)
-	// r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
-	// r.HandleFunc("/", blog.CreateIndexPage)
-	// // http.Handle("/", Middleware(r))
+	r.HandleFunc("/sitemap.xml", sitemap.CheckServeSitemap)
+	r.HandleFunc("/"+initStruct.Themes+"/{locale}/{mainroute}/{mtitle}.html", blog.CreateArticelePage)
+	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
+	r.HandleFunc("/", blog.CreateIndexPage)
 	log.Println("Listening at port 8080!!")
 
 	log.Fatal(http.ListenAndServe(":8080", Middleware(r)))
