@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: huoniesto
-        image:  gcr.io/jntlserv0/huoneisto:0.5
+        image:  gcr.io/jntlserv0/huoneisto:0.6
         env:
         - name: THEMES
           value: realestate

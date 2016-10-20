@@ -84,6 +84,8 @@ func Middleware(h http.Handler) http.Handler {
 		deviceType := goDevice.GetType(r)
 		if deviceType == "Mobile" {
 			initStruct.Mobile = true
+		} else {
+			initStruct.Mobile = false
 		}
 		sitefull := r.Host
 		site := strings.Split(sitefull, ":")[0]

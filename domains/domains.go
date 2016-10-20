@@ -20,6 +20,7 @@ type InitStruct struct {
 	Mobile    bool
 	Site      string
 	Analytics string
+	Assets    map[int][]string
 }
 
 //LogRecord substitude Nginx log capacity
