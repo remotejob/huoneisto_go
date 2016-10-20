@@ -30,6 +30,8 @@ func GetPar() domains.InitStruct {
 	var imgmap map[int][]string
 	var i int
 
+	imgmap = make(map[int][]string)
+
 	f, _ := os.Open("images.csv")
 	r := csv.NewReader(bufio.NewReader(f))
 	for {

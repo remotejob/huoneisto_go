@@ -50,6 +50,11 @@ type Articlefull struct {
 	Updated   time.Time
 }
 
+type ObjtoTemplate struct {
+	Articles []Articlefull
+	Assets   map[int][]string
+}
+
 //Sitemap_from_db only info for Sitemap format
 type Sitemap_from_db struct {
 	Stitle  string

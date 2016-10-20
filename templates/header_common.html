@@ -13,11 +13,18 @@
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<title>{{title .}}</title>
+
+{{if hasField . "Articles"}}
+  <title>{{title .Articles}}</title>
+{{end}}
+{{if hasField . "Title"}}
+  <title>{{title .}}</title>
+{{end}}
 
 <script type="application/ld+json">
 
- {{marshal .}}
+ {{if hasField . "Articles"}}{{marshal .Articles}}{{end}}
+ {{if hasField . "Title"}}{{marshal .}}{{end}}
  
 </script>
 <script>
@@ -34,10 +41,75 @@
   </head>
   <body>
    <div class="container">
-   <div class="wrapper">
+   
   <div class="well">
+
+{{if hasField . "Assets"}}
+
+    <div class="row">
+   
+    <div class="col-md-4">
+      <h1>Espoo HUONESTO 81.5m </h1>
+      <h2>Osoite:</h2>
+      <h3>Kalasääksentie 8 A 5 02650 ESPOO </h3>
+      <h2>Email: <a href="mailto:support@mazurov.eu?subject=Appartment">Contact!</a> </h2>
+    </div>
+
+    <div class="col-md-4">
+    {{range $key,$asset := .Assets}}
+   
+      {{ range $key,$img := $asset}}
+        {{if eq $key 0}}
+          <image src='/assets/img/thumbs/{{$img}}' class="img-responsive pull-left img-thumbnail" />
+        {{end}}
+      {{end}}
+    {{end}}
+  </div>
+
+
+  <div class="col-md-4">
+    <h3>Myyntihinta:</h3>
+    <h1 class='cvbigtitle'>1900,00 EUR</h1>
+
+
+  </div>  
+
+  </div>
+
+   {{end}}
+
+   {{if hasField . "Title"}}
+
+      <div class="row">
+   
+    <div class="col-md-4">
+      <h1>Espoo HUONESTO 81.5m </h1>
+      <h2>Osoite:</h2>
+      <h3>Kalasääksentie 8 A 5 02650 ESPOO </h3>
+      <h2>Email: <a href="mailto:support@mazurov.eu?subject=Appartment">Contact!</a> </h2>
+    </div>
+    <div class="col-md-4">
+      <image src='/assets/img/1.jpg' class="img-responsive pull-left img-thumbnail" />
+    </div>  
+
+  <div class="col-md-4">
+    <h3>Myyntihinta:</h3>
+    <h1 class='cvbigtitle'>1900,00 EUR</h1>
+
+
+  </div>  
+
+  </div>
+
+   {{end}}
+
+
+
   
-        	
+  </div>
+  
+  </div>
+<!--        	
     <div class="row">
 			
 			<div class="col-md-4"><image src='/assets/img/freelancer_transp.png' class="img-responsive"/></div>
@@ -52,11 +124,5 @@
 			<div class="col-md-4"><a href='http://mazurov.eu' ><image src='/assets/img/orange-arrow-right.png' class="img-responsive">More details</a></div>
 	
 		</div>		
-		
-  
-  </div>
-  </div>
-  </div>
-
-
+		-->
 {{ end }}

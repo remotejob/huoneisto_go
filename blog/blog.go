@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net/http"
 	"path"
+	"reflect"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -81,6 +82,8 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 
 	mtitle := vars["mtitle"]
 
+	log.Println("mtitle", mtitle)
+
 	mongoDBDialInfo := &mgo.DialInfo{
 		Addrs:     initstruct.Addrs,
 		Timeout:   60 * time.Second,
@@ -109,6 +112,8 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 
 	article := dbhandler.GetOneArticle(*dbsession, initstruct.Site, mtitle)
 
+	// var articles []domains.Articlefull
+
 	if len(article) == 1 {
 
 		funcMap := template.FuncMap{
@@ -125,10 +130,23 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 			"title": func(a domains.Articlefull) string {
 
 				return a.Title
+				// return "Page"
+			},
+			"hasField": func(v interface{}, name string) bool {
+				rv := reflect.ValueOf(v)
+				if rv.Kind() == reflect.Ptr {
+					rv = rv.Elem()
+				}
+				if rv.Kind() != reflect.Struct {
+					return false
+				}
+				return rv.FieldByName(name).IsValid()
 			},
 		}
 		t, err := template.New(newtemplate).Funcs(funcMap).ParseFiles(lp, headercommon)
 		check(err)
+
+		// objtoInject := domains.ObjtoTemplate{article, initstruct.Assets}
 
 		err = t.Execute(w, article[0])
 		check(err)
@@ -160,7 +178,7 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 	}
 	site := initstruct.Site
 	mobile := initstruct.Mobile
-	log.Println("article site", site, "mobile", mobile)
+	log.Println("article site", site, "mobile", mobile, "img", initstruct.Assets)
 	// checkReq(w, r, mobile)
 
 	mongoDBDialInfo := &mgo.DialInfo{
@@ -199,6 +217,16 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 
 			return "Index Page"
 		},
+		"hasField": func(v interface{}, name string) bool {
+			rv := reflect.ValueOf(v)
+			if rv.Kind() == reflect.Ptr {
+				rv = rv.Elem()
+			}
+			if rv.Kind() != reflect.Struct {
+				return false
+			}
+			return rv.FieldByName(name).IsValid()
+		},
 	}
 
 	t, err := template.New(newtemplate).Funcs(funcMap).ParseFiles(lp, headercommon)
@@ -231,9 +259,9 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 
 		if len(atricleToInject) > 0 {
 
-			log.Println(len(atricleToInject))
+			objtoInject := domains.ObjtoTemplate{atricleToInject, initstruct.Assets}
 
-			err = t.Execute(w, atricleToInject)
+			err = t.Execute(w, objtoInject)
 			check(err)
 		}
 
