@@ -13,13 +13,17 @@
 <!--<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 
-<title>{{title .}}</title>
+{{if hasField . "Articles"}}
+  <title>{{title .}}</title>
+{{end}}
 
 <script type="application/ld+json">
 
- {{marshal .}}
+ {{if hasField . "Articles"}}{{marshal .}}{{end}}
+ 
  
 </script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -36,29 +40,34 @@
    <div class="container">
 
   <div class="well">
-  
-        	
-        <div class="row">
-			
-			<div class="col-xs-6"><image src='/assets/img/freelancer_transp.png' class="img-responsive"/></div>
-			<div class="col-xs-6"><image src='/assets/img/mazurovopt.jpg' class="img-responsive img-rounded"/></div>
-			
-	
-		</div>
-        <div class="row">
+  {{if hasField . "Assets"}}
 
-			<div class="col-xs-12"><p class='cvbigtitle'>Professional Programming</p></div>
-			
-	
-		</div>
-        <div class="row">
-            <div class="col-xs-12"> C/JAVA/Golang/JavaScript/Ruby, Angular/Reactjs, Google Container Engine/Docker, SEO etc...  </div>
-        </div>    
-        <div class="row">
-            <div class="col-xs-12"><a href='http://mazurov.eu' ><image src='/assets/img/orange-arrow-right.png' class="img-responsive">More details</a></div>
+    <div class="row">
+       <div class="col-xs-4">
+    {{range $key,$asset := .Assets}}
+   
+      {{ range $key,$img := $asset}}
+        {{if eq $key 0}}
+          <image src='/assets/img/thumbs/{{$img}}' class="img-responsive pull-left img-thumbnail" />
+        {{end}}
+      {{end}}
+    {{end}}
+  </div>
+    <div class="col-xs-8">
+      <h3>Myyntihinta:</h3>
+      <h1 class='cvbigtitle'>1900,00 EUR</h1>
 
-         </div>   		
-		
+      <h2>Espoo HUONESTO 81.5m </h2>
+      <h3>Osoite:</h3>
+      <h4>Kalasääksentie 8 A 5 02650 ESPOO </h4>
+      <h3>Email: <a href="mailto:support@mazurov.eu?subject=Appartment">Contact!</a> </h3>
+    </div>
+
+
+  </div>
+
+   {{end}}
+
   
   </div>
   

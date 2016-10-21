@@ -9,8 +9,9 @@ function collapseHandler() {
 	
 }
 </script>
-
-<div  id='Mcontents'>{{.Mcontents}} </div>
+{{range $article := .Articles}}	
+<div  id='Mcontents'>{{$article.Mcontents}} </div>
+{{end}}
 
 <div class="container">
 
@@ -18,9 +19,11 @@ function collapseHandler() {
 
 <div class="collapse" id="collapse">
 <div class="well">
-<h1 id="Title">{{.Title}} </h1>
+{{range $article := .Articles}}	
+<h1 id="Title">{{ $article.Title}} </h1>
 
-<div id="Contents">{{.Contents}}</div>
+<div id="Contents">{{ $article.Contents}}</div>
+{{end}}
 </div>
 </div>
 

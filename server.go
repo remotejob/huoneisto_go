@@ -73,7 +73,6 @@ var initStruct domains.InitStruct
 
 func init() {
 	initStruct = initfunc.GetPar()
-	log.Println(initStruct.Mainroute)
 
 }
 
@@ -90,7 +89,7 @@ func Middleware(h http.Handler) http.Handler {
 		sitefull := r.Host
 		site := strings.Split(sitefull, ":")[0]
 
-		if site == "localhost" {
+		if site == "localhost" || site == "192.168.1.4" {
 
 			site = "huoneisto.mobi"
 

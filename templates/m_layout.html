@@ -1,15 +1,18 @@
 {{ template "m_header_common" .}}
 
 
-
-<div  id='Mcontents'>{{.Mcontents}} </div>
+{{range $article := .Articles}}
+<div  id='Mcontents'>{{$article.Mcontents}} </div>
+{{end}}
 
 <div class="container">
 
 <div class="well">
+ {{range $article := .Articles}}   
 <h4 id="Title">{{.Title}} </h4>
 
 <div id="Contents">{{.Contents}}</div>
+{{end}}
 </div>
 
 </div>
