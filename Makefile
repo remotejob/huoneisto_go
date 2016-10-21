@@ -1,7 +1,7 @@
 all: push
 
 # 0.0 shouldn't clobber any released builds
-TAG =0.7
+TAG =0.10
 PREFIX = gcr.io/jntlserv0/huoneisto
 
 binary: server.go
@@ -14,7 +14,7 @@ push: container
 	gcloud docker push $(PREFIX):$(TAG)
 
 set: push
-	 kubectl set image deployment/godocker godocker=$(PREFIX):$(TAG)
+	 kubectl set image deployment/huoneisto huoneist=$(PREFIX):$(TAG)
 
 clean:
 	docker rmi -f $(PREFIX):$(TAG) || true

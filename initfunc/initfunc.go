@@ -40,19 +40,11 @@ func GetPar() domains.InitStruct {
 		if err == io.EOF {
 			break
 		}
-		// Display record.
-		// ... Display record length.
-		// ... Display all individual elements of the slice.
+
 		log.Println(record)
 		imgmap[i] = record
 		i++
 
-		// fmt.Println(len(record))
-		// for i, value := range record {
-		// 	fmt.Printf("  %v\n", record[value])
-		// 	imgmap[i] = value
-
-		// }
 	}
 	initstruct.Assets = imgmap
 

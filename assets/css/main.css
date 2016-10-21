@@ -18,6 +18,11 @@ body {
    opacity: 0.1;
    color:black;
    font-size: 100%;
+}
+#Contents {
+font-size: 50%;
+opacity: 0.1;
+
 }	
 .cvbigtitle {
   font-size: 310%;

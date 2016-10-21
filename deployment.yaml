@@ -6,11 +6,11 @@ spec:
   template:
     metadata:
       labels:
-        run: huoniesto
+        run: huoneisto
     spec:
       containers:
-      - name: huoniesto
-        image:  gcr.io/jntlserv0/huoneisto:0.6
+      - name: huoneisto
+        image:  gcr.io/jntlserv0/huoneisto:0.9
         env:
         - name: THEMES
           value: realestate

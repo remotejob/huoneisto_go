@@ -63,6 +63,7 @@ import (
 	"github.com/remotejob/goDevice"
 
 	"github.com/remotejob/huoneisto_go/blog"
+	"github.com/remotejob/huoneisto_go/details"
 	"github.com/remotejob/huoneisto_go/domains"
 	"github.com/remotejob/huoneisto_go/initfunc"
 	"github.com/remotejob/huoneisto_go/robots"
@@ -109,6 +110,7 @@ func main() {
 
 	r.HandleFunc("/robots.txt", robots.Generate)
 	r.HandleFunc("/sitemap.xml", sitemap.CheckServeSitemap)
+	r.HandleFunc("/details.html", details.Show)
 	r.HandleFunc("/"+initStruct.Themes+"/{locale}/{mainroute}/{mtitle}.html", blog.CreateArticelePage)
 	r.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/", fs))
 	r.HandleFunc("/", blog.CreateIndexPage)

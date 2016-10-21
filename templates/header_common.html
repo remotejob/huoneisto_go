@@ -22,8 +22,7 @@
 <script type="application/ld+json">
 
  {{if hasField . "Articles"}}{{marshal .}}{{end}}
- 
- 
+  
 </script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -31,7 +30,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-85362694-1', 'auto');
+  ga('create', '{{.Analytics}}', 'auto');
   ga('send', 'pageview');
 
 </script>
@@ -59,17 +58,20 @@
 
   <div class="col-md-8">
     <h3>Myyntihinta:</h3>
-    <h1 class='cvbigtitle'>1900,00 EUR</h1>
+    <h1 class='cvbigtitle'>190.000,00 EUR</h1>
 
-          <h1>Espoo HUONESTO 81.5m </h1>
-      <h2>Osoite:</h2>
-      <h3>Kalasääksentie 8 A 5 02650 ESPOO </h3>
-      <h2>Email: <a href="mailto:support@mazurov.eu?subject=Appartment">Contact!</a> </h2>
+    <h1>Espoo HUONESTO 81.5m </h1>
+    <h2>Osoite:</h2>
+    <h3>Kalasääksentie 8 A 5 02650 ESPOO </h3>
+    
+    <a class="btn btn-primary btn-lg" href="/details.html" role="button">Tarkemmat tiedot</a>
 
 
   </div>  
 
   </div>
+
+
 
    {{end}}
 

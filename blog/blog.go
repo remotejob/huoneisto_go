@@ -119,10 +119,6 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 		funcMap := template.FuncMap{
 			"marshal": func(objtoTemplate domains.ObjtoTemplate) template.JS {
 
-				// var articles []domains.Articlefull
-
-				// articles = append(articles)
-
 				b := ldjsonhandler.Create(objtoTemplate.Articles, "Selected Article")
 
 				return template.JS(b)
@@ -130,7 +126,7 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 			"title": func(a domains.ObjtoTemplate) string {
 
 				return a.Articles[0].Title
-				// return "Page"
+
 			},
 			"hasField": func(v interface{}, name string) bool {
 				rv := reflect.ValueOf(v)
@@ -146,7 +142,7 @@ func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 		t, err := template.New(newtemplate).Funcs(funcMap).ParseFiles(lp, headercommon)
 		check(err)
 
-		objtoInject := domains.ObjtoTemplate{article, initstruct.Assets}
+		objtoInject := domains.ObjtoTemplate{article, initstruct.Assets, initstruct.Analytics}
 
 		err = t.Execute(w, objtoInject)
 		check(err)
@@ -215,7 +211,8 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 		},
 		"title": func(a domains.ObjtoTemplate) string {
 
-			return "Index Page"
+			return a.Articles[0].Title
+
 		},
 		"hasField": func(v interface{}, name string) bool {
 			rv := reflect.ValueOf(v)
@@ -259,7 +256,7 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 
 		if len(atricleToInject) > 0 {
 
-			objtoInject := domains.ObjtoTemplate{atricleToInject, initstruct.Assets}
+			objtoInject := domains.ObjtoTemplate{atricleToInject, initstruct.Assets, initstruct.Analytics}
 
 			err = t.Execute(w, objtoInject)
 			check(err)

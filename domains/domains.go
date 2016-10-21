@@ -51,8 +51,9 @@ type Articlefull struct {
 }
 
 type ObjtoTemplate struct {
-	Articles []Articlefull
-	Assets   map[int][]string
+	Articles  []Articlefull
+	Assets    map[int][]string
+	Analytics string
 }
 
 //Sitemap_from_db only info for Sitemap format
