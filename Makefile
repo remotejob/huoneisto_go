@@ -2,7 +2,7 @@ all: push
 
 # 0.0 shouldn't clobber any released builds
 TAG =0.11
-PREFIX = gcr.io/jntlserv0/huoneisto
+PREFIX = remotejob/huoneisto
 
 binary: server.go
 	CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w' -o server
