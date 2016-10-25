@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: huoneisto
-        image:  gcr.io/jntlserv0/huoneisto:0.9
+        image:  remotejob/huoneisto:0.11
         env:
         - name: THEMES
           value: realestate
@@ -19,7 +19,7 @@ spec:
         - name: DBADMIN
           value: admin
         - name: ADDRS
-          value: mymongo-controller
+          value: mydocker-service
         - name: MAINROUTE
           value: blogi
         - name: ANALYTICS

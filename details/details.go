@@ -2,7 +2,6 @@ package details
 
 import (
 	"html/template"
-	"log"
 	"math/rand"
 	"net/http"
 	"path"
@@ -23,10 +22,11 @@ func check(e error) {
 		panic(e)
 	}
 }
+
+//Show show details
 func Show(w http.ResponseWriter, r *http.Request) {
 
 	initstruct := r.Context().Value("init").(domains.InitStruct)
-	log.Println(initstruct, r.RequestURI)
 
 	client, err := ga.NewClient(initstruct.Analytics)
 	if err != nil {
@@ -40,8 +40,6 @@ func Show(w http.ResponseWriter, r *http.Request) {
 
 	site := initstruct.Site
 	// mobile := initstruct.Mobile
-	// log.Println("article site", site, "mobile", mobile, "img", initstruct.Assets)
-	// checkReq(w, r, mobile)
 
 	mongoDBDialInfo := &mgo.DialInfo{
 		Addrs:     initstruct.Addrs,
