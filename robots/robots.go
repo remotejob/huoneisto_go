@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"log"
 	"net/http"
-	"strings"
 
 	"github.com/remotejob/huoneisto_go/domains"
 )
@@ -17,8 +16,10 @@ func Generate(w http.ResponseWriter, r *http.Request) {
 
 	var buffer bytes.Buffer
 
-	sitefull := r.Host
-	site := strings.Split(sitefull, ":")[0]
+	// sitefull := r.Host
+	// site := strings.Split(sitefull, ":")[0]
+
+	site := initstruct.Site
 
 	buffer.WriteString("User-agent: *\nAllow: /\nSitemap: http://" + site + "/sitemap.xml\n")
 

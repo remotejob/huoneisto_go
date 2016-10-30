@@ -56,6 +56,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/gorilla/mux"
 
@@ -86,14 +87,14 @@ func Middleware(h http.Handler) http.Handler {
 		} else {
 			initStruct.Mobile = false
 		}
-		// sitefull := r.Host
-		// site := strings.Split(sitefull, ":")[0]
+		sitefull := r.Host
+		site := strings.Split(sitefull, ":")[0]
 
-		// if site == "localhost" || site == "192.168.1.4" {
+		if site == "localhost" || site == "192.168.1.4" {
 
-		site := "huoneisto.mobi"
+			site = "huoneisto.mobi"
 
-		// }
+		}
 		initStruct.Site = site
 
 		ctx := context.WithValue(r.Context(), "init", initStruct)
