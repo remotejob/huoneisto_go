@@ -1,0 +1,15 @@
+# An Ingress with 2 hosts and 3 endpoints
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: huoneisto-ingress
+  namespace: huoneisto
+spec:
+  rules:
+  - host: huoneisto.mobi
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: huoneisto
+          servicePort: 8080
