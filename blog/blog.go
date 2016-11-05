@@ -57,25 +57,25 @@ func check(e error) {
 func CreateArticelePage(w http.ResponseWriter, r *http.Request) {
 
 	initstruct := r.Context().Value("init").(domains.InitStruct)
-	log.Println(initstruct, r.RequestURI)
+	// log.Println(initstruct, r.RequestURI)
 
-	client, err := ga.NewClient(initstruct.Analytics)
-	if err != nil {
-		panic(err)
-	}
+	// client, err := ga.NewClient(initstruct.Analytics)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	err = client.Send(ga.NewEvent("hit", r.RequestURI).Label("article"))
-	if err != nil {
-		panic(err)
-	}
+	// err = client.Send(ga.NewEvent("hit", r.RequestURI).Label("article"))
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	var lp string
 	var headercommon string
 	var newtemplate string
 
-	site := initstruct.Site
+	// site := initstruct.Site
 	mobile := initstruct.Mobile
-	log.Println("article site", site, "mobile", mobile)
+	// log.Println("article site", site, "mobile", mobile)
 	// checkReq(w, r, mobile)
 
 	vars := mux.Vars(r)
@@ -174,7 +174,7 @@ func CreateIndexPage(w http.ResponseWriter, r *http.Request) {
 	}
 	site := initstruct.Site
 	mobile := initstruct.Mobile
-	log.Println("article site", site, "mobile", mobile, "img", initstruct.Assets)
+	// log.Println("article site", site, "mobile", mobile, "img", initstruct.Assets)
 	// checkReq(w, r, mobile)
 
 	mongoDBDialInfo := &mgo.DialInfo{
