@@ -46,19 +46,17 @@
     <div class="row">
    
     <div class="col-md-4">
-    {{range $key,$asset := .Assets}}
+    {{range .Assets}}
    
-      {{ range $key,$img := $asset}}
-        {{if eq $key 0}}
-          <image src='/assets/img/thumbs/{{$img}}' class="img-responsive pull-left img-thumbnail" />
-        {{end}}
-      {{end}}
+  
+          <image src='/assets/img/thumbs/{{.Link}}' class="img-responsive pull-left img-thumbnail" />
+ 
     {{end}}
   </div>
 
   <div class="col-md-8">
     <h3>Myyntihinta:</h3>
-    <h1 class='cvbigtitle'>190.000,00 EUR</h1>
+    <h1 class='cvbigtitle'>190.000 EUR</h1>
 
     <h1>Suora kontakti:</h1>
     <h3>Email: <a href="mailto:support@mazurov.eu?subject=appartment"> support@mazurov.eu</a></h3>    
