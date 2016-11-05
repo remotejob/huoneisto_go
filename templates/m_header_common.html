@@ -44,25 +44,22 @@
 
     <div class="row">
        <div class="col-xs-4">
-    {{range $key,$asset := .Assets}}
+    {{range  .Assets}}
    
-      {{ range $key,$img := $asset}}
-        {{if eq $key 0}}
-          <image src='/assets/img/thumbs/{{$img}}' class="img-responsive pull-left img-thumbnail" />
-        {{end}}
-      {{end}}
+          <image src='/assets/img/thumbs/{{.Link}}' class="img-responsive pull-left img-thumbnail" />
+ 
     {{end}}
   </div>
     <div class="col-xs-8">
       <h3>Myyntihinta:</h3>
-      <h1 class='cvbigtitle'>190.000,00 EUR</h1>
+      <h1 class='cvbigtitle'>190.000 EUR</h1>
 
       <h2>Espoo HUONESTO 81.5m </h2>
       <h3>Osoite:</h3>
       <h4>Kalasääksentie 8 A 5 02650 ESPOO </h4>
-      <h3>Email: <a href="mailto:support@mazurov.eu?subject=Appartment">Contact!</a> </h3>
+      <h3>Email: </h3>
+      <h4><a href="mailto:support@mazurov.eu?subject=Appartment">support@mazurov.eu</a></h4>
     </div>
-
 
   </div>
 

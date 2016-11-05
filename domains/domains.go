@@ -7,6 +7,12 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+//Image struct
+type Image struct {
+	Link        string
+	Description string
+}
+
 //InitStruct start param
 type InitStruct struct {
 	Themes    string
@@ -20,7 +26,7 @@ type InitStruct struct {
 	Mobile    bool
 	Site      string
 	Analytics string
-	Assets    map[int][]string
+	Assets    []Image
 }
 
 //LogRecord substitude Nginx log capacity
@@ -52,7 +58,7 @@ type Articlefull struct {
 
 type ObjtoTemplate struct {
 	Articles  []Articlefull
-	Assets    map[int][]string
+	Assets    []Image
 	Analytics string
 }
 

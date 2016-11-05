@@ -27,10 +27,7 @@ func GetPar() domains.InitStruct {
 	initstruct.Mobile = false
 	initstruct.Analytics = os.Getenv("ANALYTICS")
 
-	var imgmap map[int][]string
-	var i int
-
-	imgmap = make(map[int][]string)
+	var imgmap []domains.Image
 
 	f, _ := os.Open("images.csv")
 	r := csv.NewReader(bufio.NewReader(f))
@@ -42,8 +39,8 @@ func GetPar() domains.InitStruct {
 		}
 
 		log.Println(record)
-		imgmap[i] = record
-		i++
+		img := domains.Image{record[0], record[1]}
+		imgmap = append(imgmap, img)
 
 	}
 	initstruct.Assets = imgmap
